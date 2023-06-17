@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <title>Ask a Question</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <style>
+        /* CSS for the loading message */
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="/static/logo.png" alt="AskMind Logo" class="logo">
+    </header>
+
+    <main>
+        <form method="POST" action="{% url 'ask_question' %}">
+            {% csrf_token %}
+            <div>
+                <label for="documents_path" style="color: #333;">Documents Path:</label>
+                <input type="directory" id="documents_path" name="documents_path" required value="{{ request.POST.documents_path }}">
+            </div>
+            <div>
+                <label for="question" style="color: #333;">Question:</label>
+                <input type="text" id="question" name="question" required value="{{ request.POST.question }}">
+            </div>
+            <div>
+                <input type="submit" value="Submit">
+            </div>
+            <div class="loading" id="loadingMessage">Loading...</div> <!-- Add the loading message element -->
+            {% if message %}
+            <section>
+                <p>{{ message }}</p>
+            </section>
+            {% endif %}
+        </form>
+
+
+        {% if results %}
+        <section id="resultsSection">
+            <h2>Results</h2>
+            {% for result in results %}
+            <article>
+                <h3>Question: {{ result.Question }}</h3>
+                {% for paragraph in result.Paragraphs %}
+                <h3>Answer: {{ paragraph.Answer }}</h3>
+                <p>&mdash; Answer Processing Time: {{ result.Answer_Processing_Time }}s</p>
+                <p>Confidence: {{ paragraph.Confidence }}</p>
+                <p>File Path: {{ result.File_Path }} </p>
+                <p>&mdash; File Processing Time: {{ result.File_Processing_Time }}s</p>
+                <p>Paragraph:</p>
+                <textarea rows="5" cols="33">{{ paragraph.Paragraph }}</textarea>
+                <p>Search Processing Time: {{ paragraph.highlight_matching_processing_time }}s</p>
+                {% endfor %}
+            </article>
+            {% endfor %}
+        </section>
+        {% endif %}
+    </main>
+
+    <footer>
+        &copy; 2023 Biomediqa. All rights reserved.
+    </footer>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function() {
+            document.getElementById('loadingMessage').style.display = 'block'; // Show the loading message
+        });
+    </script>
+</body>
+
+</html>
