@@ -1,5 +1,4 @@
 import logging
-<<<<<<< HEAD
 import time
 from transformers import pipeline, AutoTokenizer, AutoModelForQuestionAnswering, T5ForConditionalGeneration, T5Tokenizer
 
@@ -37,58 +36,36 @@ class QuestionAnswering:
         return answer, confidence
 
 
-#
-# Usage example
-question_answering = QuestionAnswering()
-
-context = """Pour planifier une visite médicale, sélectionnez un employé depuis la liste et cliquez sur l’onglet suivi médical, ou bien allez au sous module “suivi médical” et cliquez sur l'icône "Calendrier". Pour afficher les détails d’une visite médicale, cliquez sur l'icône "Ambulance” comme le montre la capture d’écran ci-dessous."""
-
-question = "comment planifier une visite médicale"
-
-start_time = time.time()  # Start measuring the processing time
-answer, confidence = question_answering.generate_answer(context, question)
-end_time = time.time()  # Stop measuring the processing time
-answer_processing_time = round(end_time - start_time, 2)
-
-print("Question:", question)
-print("Answer:", answer)
-print("Confidence:", confidence)
-print("Answer processing time:", answer_processing_time)
-=======
-from transformers import pipeline, AutoTokenizer, AutoModelForQuestionAnswering
-
-logger = logging.getLogger(__name__)
-
-
-class QuestionAnswering:
-    def __init__(self):
-        self.tokenizer = AutoTokenizer.from_pretrained("facebook/bart-large")
-        self.model = AutoModelForQuestionAnswering.from_pretrained("facebook/bart-large")
-
-        self.nlp = pipeline("question-answering", model=self.model, tokenizer=self.tokenizer)
-
-    def generate_answer(self, context, question):
-        try:
-            output = self.nlp(question=question, context=context)
-            answer = output["answer"]
-            confidence = output["score"]
-            return answer, confidence
-        except Exception as e:
-            raise Exception(f"Error generating answer: {str(e)}")
-
-
+# #
 # # Usage example
-question_answering = QuestionAnswering()
-
-context = """La Tunisie a connu différentes périodes historiques. Peuplée dès la préhistoire, elle a été le berceau de la brillante civilisation carthaginoise. À partir du ie siècle av. J-C les Romains en firent un des grands producteurs de blé et d'huile d'olive destiné à approvisionner Rome. La Tunisie devenue le royaume des Vandales au moment des grandes migrations de peuples germaniques fut reconquise au début du vie siècle par les Byzantins de Justinien.
-
-Les Arabes s'emparent de la Tunisie dès le milieu du viie siècle, ils y introduisent l'islam. Kairouan devient le centre d'une brillante civilisation musulmane. La Tunisie va subir les divisions politiques et religieuses du monde arabo-musulman. Le plus souvent ses dirigeants tentent d'échapper à l'autorité des califes de Damas, de Bagdad ou du Caire. En 1574, la Tunisie devient une province de l'empire turc ottoman; mais le bey de Tunis parvient à une quasi indépendance. Au xixe siècle, différents beys modernisent le pays, mais endettent fortement la Tunisie.
-
-En 1882, la France impose son protectorat au gouvernement du bey de Tunis. L'économie est modernisée. Mais les nationalistes tunisiens réclament l'indépendance. Pendant la Seconde Guerre mondiale en 1943, la Tunisie est le lieu d'affrontement entre les armées anglo-américaines et l'armée allemande. Après la guerre, l'agitation nationaliste encadrée par le parti Néo-Destour d'Habib Bourguiba reprend. En 1956, la France se retire de Tunisie qui devient indépendante. Le président Bourguiba laïcise le pays en faisant d'importantes réformes de société, mais il impose le parti unique. À partir de 1987, le président Ben Ali continue l'œuvre de Bourguiba. mais progressivement la Tunisie devient un état policier et l'entourage du président s'enrichit en contrôlant l'économie. En janvier 2011 après un mois de manifestations populaires Ben Ali est obligé de quitter la Tunisie."""
-
-question = "qui est arrivé à Tunisie en 1987"
-
-answer, confidence = question_answering.generate_answer(context, question)
-print("Answer:", answer)
-print("Confidence:", confidence)
->>>>>>> 5894e201baec337ba47f0271668f67775d5039ad
+# question_answering = QuestionAnswering()
+#
+# context = """CONFIGURATION DES PR OFILS UTILISATEURS SUR DOS ILINK. INTRODUCTION DOSILINK va être utilisé par des clients. L’objectif de ce logiciel est de devenir une plateforme de communication entre BIOMEDIQA et ses clients. Les clients auront donc leurs données sur le même serveur. Il faut donc s’assurer qu’un client n’accède pas aux données d’un autre client. Ce cahier des charges a pour objectif de développer des profils utilisateur pour les clients. CREATION DE PROFILS L’objectif est de créer 6 profils clients : - Administrateur BIOME DIQA - Administrateur Client - SRP - MDT - Responsable formation - Cadre ADMINISTRATEUR BIOME DIQA Il a accès à toutes les données. Le profil est déjà existant donc inutile de le créer. ADMINISTRATEUR CLIEN T Il a accès aux modules - RH Gestion des employés - Calendrier - Config. Applicative - Utilisateurs/Sociétés - Utilisateurs - Travailleur s exposés - Formations Il peut tout faire : Lecture, Ecriture, Créer, Supprimer, Exporter. C’est toutefois restreint uniquement sur sa société. Dans la vidéo youtube sur la gestion des droits : https://www.youtube.com/watch?v=kko3L - LeRVA&t=130s Il explique comment faire à 1 :45 environ.
+#
+# -------------------------
+#
+#  Toutefois cela implique de recréer des permissions spécifiques pour tous les modules. A voir si la condition ne peut pas être généralisée au niveau des groupes ou des rôles. SRP Accès aux modules : - Travailleurs exposés - Gestion des travailleurs - Lis te des travailleurs - Travailleurs exposés - Gestion des travailleurs - Suivi dosimétrique - Travailleurs exposés - Gestion des travailleurs - Configuration - Travailleurs exposés - Tableau de bord - Suivi dosimétrique Sur ces modules il peut tout faire : Lecture, Ecriture, Créer, Supprimer, Exporter. C’est toutefois restreint uniquement sur sa société. MDP Accès aux modules : - Travailleurs exposés - Gestion des travailleurs - Liste des travailleurs - Travailleurs exposés - Gestion des travailleurs - Sui vi médical - Travailleurs exposés - Gestion des travailleurs - Configuration - Travailleurs exposés - Tableau de bord - Suivi médical Sur ces modules il peut tout faire : Lecture, Ecriture, Créer, Supprimer, Exporter. C’est toutefois restreint uniquement s ur sa société. RESPONSABLE FORMATIO N Accès aux modules : - Travailleurs exposés - Gestion des travailleurs - Liste des travailleurs - Travailleurs exposés - Gestion des travailleurs - Configuration - Travailleurs exposés - Tableau de bord - Formation tra vailleur - Formations Sur ces modules il peut tout faire : Lecture, Ecriture, Créer, Supprimer, Exporter. C’est toutefois restreint uniquement sur sa société. CADRE Accès aux modules : - Travailleurs exposés - Formations Sur ces modules il a accès en Lecture uniquement. C’est restreint uniquement sur sa société.
+#
+# -------------------------
+#
+#  CREATION DE L’ENVIRO NNEMENT DE TESTS Créer 3 sociétés : BIOMEDIQA, Client1 et Client2. Créer plusieurs utilisateurs pour chaque profil. Tester que l’administrateur BIOMEDIQA a accès à toutes les données. Les utilisateurs de chaque client n’accède qu’à leurs données et que les consignes pour chaque profil soient respectées."""
+#
+# question = "DOSILINK va être utilisé par qui"
+#
+# start_time = time.time()  # Start measuring the processing time
+# answer, confidence = question_answering.generate_answer(context, question)
+# end_time = time.time()  # Stop measuring the processing time
+# answer_processing_time = round(end_time - start_time, 2)
+#
+# print("Question:", question)
+# print("Answer:", answer)
+# print("Confidence:", confidence)
+# print("Answer processing time:", answer_processing_time)
+#
+# start_time = time.time()  # Start measuring the processing time
+# reformulated_answer = question_answering.reformulate_answer(question=question, answer=answer)
+# end_time = time.time()  # Stop measuring the processing time
+# reformulate_processing_time = round(end_time - start_time, 2)
+#
+# print("reformulated_answer:", reformulated_answer)
+# print("Answer processing time:", reformulate_processing_time)
