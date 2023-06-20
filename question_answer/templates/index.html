@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <title>Ask a Question</title>
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <style>
         /* CSS for the loading message */
@@ -16,6 +17,11 @@
             color: #333;
         }
     </style>
+=======
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+<!--    <script src="static/script.js"></script>-->
+
+>>>>>>> 5894e201baec337ba47f0271668f67775d5039ad
 </head>
 
 <body>
@@ -37,6 +43,7 @@
             <div>
                 <input type="submit" value="Submit">
             </div>
+<<<<<<< HEAD
             <div class="loading" id="loadingMessage">Loading...</div> <!-- Add the loading message element -->
             {% if message %}
             <section>
@@ -58,6 +65,20 @@
                 <p>Confidence: {{ paragraph.Confidence }}</p>
                 <p>File Path: {{ result.File_Path }} </p>
                 <p>&mdash; File Processing Time: {{ result.File_Processing_Time }}s</p>
+=======
+        </form>
+
+        {% if results %}
+        <section>
+            <h2>Results</h2>
+            {% for result in results %}
+            <article>
+                <h3>{{ result.Question }}</h3>
+                {% for paragraph in result.Paragraphs %}
+                <p>Answer: {{ paragraph.Answer }} &mdash; Answer Processing Time: {{ result.Answer_Processing_Time }}s</p>
+                <p>Confidence: {{ paragraph.Confidence }}</p>
+                <p>File Path: {{ result.File_Path }} &mdash; File Processing Time: {{ result.File_Processing_Time }}s</p>
+>>>>>>> 5894e201baec337ba47f0271668f67775d5039ad
                 <p>Paragraph:</p>
                 <textarea rows="5" cols="33">{{ paragraph.Paragraph }}</textarea>
                 <p>Search Processing Time: {{ paragraph.highlight_matching_processing_time }}s</p>
@@ -67,16 +88,23 @@
         </section>
         {% endif %}
     </main>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5894e201baec337ba47f0271668f67775d5039ad
     <footer>
         &copy; 2023 Biomediqa. All rights reserved.
     </footer>
 
+<<<<<<< HEAD
     <script>
         document.querySelector('form').addEventListener('submit', function() {
             document.getElementById('loadingMessage').style.display = 'block'; // Show the loading message
         });
     </script>
+=======
+    <script src="script.js"></script>
+>>>>>>> 5894e201baec337ba47f0271668f67775d5039ad
 </body>
 
 </html>
