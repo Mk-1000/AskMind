@@ -29,7 +29,7 @@ pip install -r requirements.txt
 1. Clone the project repository:
 
 ```
-git clone <repository_url>
+git clone https://github.com/Mk-1000/AskMind.git
 cd django-document-search
 ```
 
