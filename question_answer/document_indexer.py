@@ -13,7 +13,6 @@ from nltk.tokenize import word_tokenize
 from openpyxl import load_workbook
 from pptx import Presentation
 
-
 class DocumentSearcher:
     def __init__(self, data_directory):
         self.config = {
@@ -354,21 +353,3 @@ class DocumentSearcher:
 
         except Exception as e:
             return str(e), None
-
-#
-# data_directory = r"C:\Users\Administrator\Desktop\documents"
-# searcher = DocumentSearcher(data_directory)
-# # message, indexing_time_process = searcher.collect_data()
-#
-# # print(message)
-#
-# query = "DOSILINK va être utilisé par qui"
-# results = searcher.search_files(query)
-#
-# for result in results:
-#     matching_paragraphs, processing_time = searcher.paragraphs_containing_answer(result["file_path"], query)
-#     print(f"File: {result['file_path']}")
-#     print(f"Processing time: {processing_time:.2f} seconds")
-#     print("Matching paragraphs:")
-#     print(matching_paragraphs)
-#     print("-------------------------")
