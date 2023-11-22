@@ -84,5 +84,5 @@ After the documents are indexed, you can enter a question in the "Question" fiel
 
 .
 
-![FireShot Capture 001 - Ask a Question - 127 0 0 1](https://github.com/Mk-1000/AskMind/assets/86926622/d69e2283-fbd5-458d-b699-aa94bbdb0407)
+![FireShot Capture 002 - Ask a Question - 127 0 0 1](https://github.com/Mk-1000/AskMind/assets/86926622/c1681e38-85b9-460e-98e1-01c03a1762a3)
 
