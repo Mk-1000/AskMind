@@ -83,3 +83,6 @@ After the documents are indexed, you can enter a question in the "Question" fiel
 - The application provides processing times for various steps, including file processing, answer generation, and search processing. These times can help in evaluating the performance of the system.
 
 .
+
+![FireShot Capture 001 - Ask a Question - 127 0 0 1](https://github.com/Mk-1000/AskMind/assets/86926622/d69e2283-fbd5-458d-b699-aa94bbdb0407)
+
